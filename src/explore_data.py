@@ -1,3 +1,11 @@
 import pandas as pd
 df = pd.read_csv("data/study_hours.csv")
 print(df)
+print(df.head())
+print(df.shape)
+print(df.columns)
+df.info()
+print(df.describe())
+print(df.isnull().sum())
+print(df["exam_score"])
+print(df[df["hours_studied"] > 5])
