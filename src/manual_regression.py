@@ -1,5 +1,9 @@
 import pandas as pd
 import numpy as np
+from sklearn.linear_model import LinearRegression
+
+
+
 
 df = pd.read_csv("data/study_hours.csv")
 x = df["hours_studied"].to_numpy()
@@ -7,6 +11,11 @@ y = df["exam_score"].to_numpy()
 
 mean_x = np.mean(x)
 mean_y = np.mean(y)
+
+model = LinearRegression()
+model.fit(x.reshape(-1,1), y)
+print(model.coef_)
+print(model.intercept_)
 
 numerator = np.sum((x - mean_x)*(y-mean_y))
 denominator = np.sum((x - mean_x)**2)
