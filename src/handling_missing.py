@@ -1,6 +1,7 @@
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
@@ -22,6 +23,8 @@ print(df["ocean_proximity"].value_counts())
 df = df[["median_income", "median_house_value"]]
 print(df.head())
 print(df.shape)
+df = df[df["median_house_value"]<500001]
+print(df.shape)
 
 X = df[["median_income"]]
 y = df["median_house_value"]
@@ -42,3 +45,10 @@ print("Intercept:", model.intercept_)
 print("MAE:", mae)
 print("RMSE:", rmse)
 print("R2:", r2)
+print(df["median_house_value"].describe())
+
+plt.hist(df["median_house_value"], bins=50)
+plt.xlabel("Median House Value")
+plt.ylabel("Number of Districts")
+plt.title("Distribution of Median House Values")
+plt.show()
