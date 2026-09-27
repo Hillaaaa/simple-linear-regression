@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.linear_model import LinearRegression
 
 def load_data(file_path):
     if file_path.endswith(".csv"):
@@ -11,8 +12,13 @@ def load_data(file_path):
         raise ValueError("unsupported file type: " + file_path)
     return df
 
-study_df = load_data("data/study_hours.csv")
-housing_df = load_data("data/housing.csv")
 
-print(study_df.shape)
-print(housing_df.shape)
+def select_feature_target(df, feature_column, target_column):
+    X = df[[feature_column]]
+    y = df[target_column]
+    return X, y
+
+def train_model(X,y):
+    model = LinearRegression()
+    model.fit(X,y)
+    return model
