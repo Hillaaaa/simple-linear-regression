@@ -1,4 +1,4 @@
-from src.pipeline import load_data, select_feature_target, train_model, split_data, evaluate_model
+from src.pipeline import load_data, select_feature_target, train_model, split_data, evaluate_model, prepare_data
 df = load_data("data/study_hours.csv")
 X, y = select_feature_target(df, "hours_studied", "exam_score")
 X_train, X_test, y_train, y_test = split_data(X,y)
@@ -8,6 +8,9 @@ print(metrics)
 print(model.coef_, model.intercept_)
 
 df = load_data("data/housing.csv")
+print(df.shape)
+df = prepare_data(df, "median_income", "median_house_value")
+print(df.shape)
 X, y = select_feature_target(df, "median_income", "median_house_value")
 X_train, X_test, y_train, y_test = split_data(X,y)
 model = train_model(X_train, y_train)

@@ -42,3 +42,6 @@ def evaluate_model(model, X_test, y_test):
         "r2_score": r2
     }
     return metrics
+def prepare_data(df, feature_column, target_column):
+    cleaned_df = df.dropna(subset=[feature_column, target_column])
+    return cleaned_df
