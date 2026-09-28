@@ -9,6 +9,7 @@ print(model.coef_, model.intercept_)
 
 df = load_data("data/housing.csv")
 print(df.shape)
+df= df[df["median_house_value"] < 500001]
 df = prepare_data(df, "median_income", "median_house_value")
 print(df.shape)
 X, y = select_feature_target(df, "median_income", "median_house_value")
