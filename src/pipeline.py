@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import matplotlib.pyplot as plt
 
 def load_data(file_path):
     if file_path.endswith(".csv"):
@@ -45,3 +46,15 @@ def evaluate_model(model, X_test, y_test):
 def prepare_data(df, feature_column, target_column):
     cleaned_df = df.dropna(subset=[feature_column, target_column])
     return cleaned_df
+
+def plot_results(X, y, model, xlabel, ylabel, title):
+    X_values = X.iloc[:,0]
+    X_sorted = X.sort_values(by=X.columns[0])
+    plt.figure(figsize=(10,6))
+    plt.scatter(X_values, y, color="blue", label="Actual data")
+    plt.plot(X_sorted.iloc[:,0], model.predict(X_sorted),color= "black", label= "Regression line")
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.title(title)
+    plt.legend()
+    plt.show()
