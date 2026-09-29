@@ -58,3 +58,24 @@ def plot_results(X, y, model, xlabel, ylabel, title):
     plt.title(title)
     plt.legend()
     plt.show()
+
+def plot_actual_vs_predicted(model, X_test, y_test, title):
+    plt.figure(figsize=(10,6))
+    plt.scatter(y_test, model.predict(X_test), color="blue", label="Predictions")
+    plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], color="red",label="Perfect Predictions")
+    plt.xlabel("Actual")
+    plt.ylabel("Predicted")
+    plt.title(title)
+    plt.legend()
+    plt.show()
+
+def plot_residuals(model, X_test, y_test, title):
+    predictions = model.predict(X_test)
+    residuals = y_test - predictions
+    plt.figure(figsize=(10,6))
+    plt.scatter(predictions, residuals , color="blue" )
+    plt.axhline(y=0, color="red")
+    plt.xlabel("Predicted")
+    plt.ylabel("Residuals")
+    plt.title(title)
+    plt.show()
